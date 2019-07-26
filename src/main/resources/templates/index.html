@@ -1,60 +1,216 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'index')}">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>DeBattle</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+
+
+</head>
 
 <body>
+	<div th:insert="fragments/header :: header(~{ :: .spells})">Header</div>
+	<div th:replace="${contentPage} :: content">Content</div>
+	
+	<script type="text/javascript">
+		
+		$("#commentator-message").keyup(function(event) {
 
-<div class="jumbotron text-center">
-  <div class="container">
-    <a href="/" class="lang-logo">
-      <img src="/lang-logo.png">
-    </a>
-    <h1>Getting Started with Java on Heroku</h1>
-    <p>This is a sample Java application deployed to Heroku. It's a reasonably simple app - but a good foundation for understanding how to get the most out of the Heroku platform.</p>
-    <a type="button" class="btn btn-lg btn-default" href="https://devcenter.heroku.com/articles/getting-started-with-java"><span class="glyphicon glyphicon-flash"></span> Getting Started with Java</a>
-    <a type="button" class="btn btn-lg btn-primary" href="https://github.com/heroku/java-getting-started"><span class="glyphicon glyphicon-download"></span> Source on GitHub</a>
-  </div>
-</div>
-<div class="container">
-  <div class="alert alert-info text-center" role="alert">
-    To deploy your own copy, and learn the fundamentals of the Heroku platform, head over to the <a href="https://devcenter.heroku.com/articles/getting-started-with-java" class="alert-link">Getting Started with Java on Heroku</a> tutorial.
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-info-sign"></span> How this sample app works</h3>
-      <ul>
-        <li>This app was deployed to Heroku, either using Git or by using <a href="https://github.com/heroku/java-getting-started">Heroku Button</a> on the repository.</li>
+    	if(event.keyCode == 13 && $(this).val() != '') {
 
-        <li>When Heroku received the source code, it fetched all the dependencies in the <a href="https://github.com/heroku/java-getting-started/blob/master/pom.xml">pom.xml</a>, creating a slug.</li>
-        <li>The platform then spins up a dyno, a lightweight container that provides an isolated environment in which the slug can be mounted and executed.</li>
-        <li>You can scale your app, manage it, and deploy over <a href="https://addons.heroku.com/">150 add-on services</a>, from the Dashboard or CLI.</li>
-      </ul>
-    </div>
-    <div class="col-md-6">
-      <h3><span class="glyphicon glyphicon-link"></span> Next Steps</h3>
-      <ul>
-        <li>If you are following the <a href="https://devcenter.heroku.com/articles/getting-started-with-java">Getting Started</a> guide, then please head back to the tutorial and follow the next steps!</li>
-        <li>If you deployed this app by deploying the Heroku Button, then in a command line shell, run:</li>
-        <ul>
-          <li><code>git clone https://github.com/heroku/java-getting-started.git</code> - this will create a local copy of the source code for the app</li>
-          <li><code>cd java-getting-started</code> - change directory into the local source code repository</li>
-          <li><code>heroku git:remote -a &lt;your-app-name></code> - associate the Heroku app with the repository</li>
-          <li>You'll now be set up to run the app locally, or <a href="https://devcenter.heroku.com/articles/getting-started-with-java#push-local-changes">deploy changes</a> to Heroku</li>
-        </ul>
-      </ul>
-      <h3><span class="glyphicon glyphicon-link"></span> Helpful Links</h3>
-      <ul>
-        <li><a href="https://www.heroku.com/home">Heroku</a></li>
-        <li><a href="https://devcenter.heroku.com/">Heroku Dev Center</a></li>
-        <li><a href="https://devcenter.heroku.com/articles/getting-started-with-java">Getting Started with Java on Heroku</a></li>
-        <li><a href="https://devcenter.heroku.com/articles/deploying-java">Deploying Java Apps on Heroku</a></li>
-      </ul>
-    </div>
-  </div> <!-- row -->
-   <div class="alert alert-info text-center" role="alert">
-    Please do work through the Getting Started guide, even if you do know how to build such an application.  The guide covers the basics of working with Heroku, and will familiarize you with all the concepts you need in order to build and deploy your own apps.
-  </div>
-</div>
+    		var clear_block = document.createElement('div');
+    		clear_block.className = 'clearfix';
 
+    		var spectator_image = document.createElement('div');
+    		spectator_image.className = 'spectator-image';
+
+    		var link = document.createElement('a');
+    		link.href = '#';
+
+    		var user_picture = document.createElement('img');
+    		user_picture.src = '/resources/images/users/10.jpg';
+    		user_picture.classList.add('img-thumbnail');
+    		user_picture.classList.add('commentator');
+    		user_picture.alt = 'Spectator';
+
+    		link.appendChild(user_picture);
+    		spectator_image.appendChild(link);
+
+    		var message = document.createElement('div');
+    		message.classList.add('message');
+    		message.classList.add('of-spectators');
+    		message.classList.add('of-mine-as-commentator');
+    		message.classList.add('rounded');
+
+    		var nickname = document.createElement('p');
+    		nickname.classList.add('commentator-name');
+    		nickname.classList.add('h6');
+    		nickname.innerHTML = 'Я';
+
+    		var argument = document.createElement('p');
+    		argument.classList.add('argument');
+    		argument.classList.add('h6');
+    		argument.innerHTML = $(this).val();
+
+    		var create_date = document.createElement('p');
+    		create_date.className = 'create-date';
+    		create_date.innerHTML = '13.09';
+
+    		message.appendChild(nickname);
+    		message.appendChild(argument);
+    		message.appendChild(create_date);
+    		clear_block.appendChild(spectator_image);
+    		clear_block.appendChild(message);
+
+    		$(".for-commentators").append(clear_block);
+
+    		$('.for-commentators').scrollTop(100000);
+
+        $(this).val('');
+
+    	}
+
+		});
+		
+		$("#member-message").keyup(function(event) {
+
+	    	if(event.keyCode == 13 && $(this).val() != '') {
+
+	    		var clear_block = document.createElement('div');
+	    		clear_block.className = 'clearfix';
+
+	    		var message = document.createElement('div');
+	    		message.classList.add('message');
+	    		message.classList.add('of-debaters');
+	    		message.classList.add('of-mine-as-member');
+	    		message.classList.add('rounded');
+
+	    		var argument = document.createElement('p');
+	    		argument.classList.add('argument');
+	    		argument.classList.add('h6');
+	    		argument.innerHTML = $(this).val();
+
+	    		var create_date = document.createElement('p');
+	    		create_date.className = 'create-date';
+	    		create_date.innerHTML = '13.09';
+
+	    		message.appendChild(argument);
+	    		message.appendChild(create_date);
+	    		clear_block.appendChild(message);
+
+	    		$(".for-members").append(clear_block);
+
+	    		$('.for-members').scrollTop(100000);
+
+	        $(this).val('');
+
+	    	}
+
+			});
+		
+		$('#surrender').tooltip({
+
+	    	title : 'Завершить беседу и признать своё поражение',
+	    	delay: { show: 750, hide: 750},
+
+			});
+		
+		$("#confirm-surrender").click(function(event) {
+
+			var clear_block = document.createElement('div');
+		clear_block.className = 'clearfix';
+
+		var message = document.createElement('div');
+		message.classList.add('message');
+		message.classList.add('of-debaters');
+		message.classList.add('-final');
+		message.classList.add('rounded');
+
+		var winner_report = document.createElement('p');
+		winner_report.classList.add('report');
+		winner_report.classList.add('h5');
+		winner_report.innerHTML = 'Петя признаёт поражение. 23 зрителя отдали ему свой голос.';
+
+		var loser_report = document.createElement('p');
+		loser_report.classList.add('report');
+		loser_report.classList.add('h5');
+		loser_report.innerHTML = 'Вася побеждает в дебатах. 45 зрителей отдали ему свой голос.';
+
+		var create_date = document.createElement('p');
+		create_date.className = 'create-date';
+		create_date.innerHTML = '13.10';
+
+		message.appendChild(winner_report);
+		message.appendChild(loser_report);
+		message.appendChild(create_date);
+		clear_block.appendChild(message);
+
+		$(".for-members").append(clear_block);
+
+		$('.for-members').scrollTop(100000);
+
+		$("#member-message").prop("disabled", true);
+		$("#surrender").detach();
+
+		var leave_lobby = document.createElement('button');
+
+		leave_lobby.classList.add('rounded');
+		leave_lobby.classList.add('h4');
+		leave_lobby.classList.add('leave');
+
+		leave_lobby.innerHTML = 'Покинуть лобби'
+
+		$(".argument-label").append(leave_lobby);
+
+	});
+		
+		var isClicked = true;
+		
+		$('#firstPosition').click(function() {
+			if(isClicked == true){
+			$('#firstPosition').html(function(i, val) {
+				return val * 1 + 1
+				
+			});
+			isClicked = false;
+			}	
+			$("#voteForFirst").detach();
+		});
+		
+	
+		
+		
+		$('#secondPosition').click(function() {
+			if(isClicked == true){
+			$('#secondPosition').html(function(i, val) {
+				return val * 1 + 1
+			});
+			isClicked = false;
+			}	
+		});
+		
+
+	</script>
+	
 </body>
 </html>

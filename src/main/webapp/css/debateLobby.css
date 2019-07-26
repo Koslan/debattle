@@ -1,0 +1,358 @@
+@charset "UTF-8";
+
+.speach-zone {
+	
+	display: flex;
+	justify-content: space-around;
+	margin-top: 20px;
+	
+}
+
+.main-field {
+
+	border: 2px inset #2D87BC;
+	width: 700px;
+
+}
+
+.opponents {
+
+	display: flex;
+	justify-content: space-around;
+	margin-bottom: 20px; 
+
+}
+
+img {
+
+  	margin: 10px;
+  	
+
+}
+
+.members {
+	
+	max-width: 180px;
+  	max-height: 90px;
+	
+}
+
+.commentator {
+	
+	max-width: 80px;
+  	max-height: 80px;
+  	float: left;
+	
+}
+
+.member-name, .side {
+
+	text-align: center;
+
+}
+
+.side {
+
+	color: #2D87BC;
+
+}
+
+.h1 {
+
+	display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.table-of-votes {
+
+	display: flex;
+	justify-content: center;
+	margin-bottom: 20px;
+
+}
+
+.resistance, .chat-field {
+
+	border-bottom: 2px inset #2D87BC;
+
+}
+
+.chat-field, .argument-label {
+
+	padding: 0;
+
+}
+
+.chat-field {
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
+
+.for-members {
+	
+	height: 300px;
+	
+}
+
+.for-commentators {
+	
+	height: 600px;
+	
+}
+
+#firstPosition {
+
+	background-color: #ef5953;
+	text-align:center;
+	width: 100px;
+	height: 30px;
+
+}
+
+#secondPosition {
+
+	background-color: #6eb3e5;
+	text-align:center;
+	width: 100px;
+	height: 30px;
+
+}
+
+.index {
+
+	width: 25%;
+	height: 50px;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.message {
+
+	overflow-wrap: break-word;
+	margin: 10px 0;
+	padding: 10px 10px 0;
+
+}
+
+.of-debaters {
+	
+	max-width: 50%;
+	
+}
+
+.of-spectators {
+	
+	max-width: 80%;
+	float: left;
+	
+}
+
+.of-opponent {
+
+	background-color: #ef5953;
+	float: left;
+
+}
+
+.of-mine-as-member {
+
+	background-color: #6eb3e5;
+	float: right;
+
+}
+
+.of-mine-as-commentator {
+	
+	background-color: #79fc84;
+	
+}
+
+.commentator-name {
+	
+	color: #e01818;
+	
+}
+
+.of-others {
+
+		background-color: #d074f7;
+
+}
+
+.create-date {
+
+	float: right;
+
+}
+
+.clearfix:after {
+	
+  	content: ".";
+  	display: block;
+  	clear: both;
+  	visibility: hidden;
+  	height: 0;
+
+}
+
+.argument-label {
+
+	display: flex;
+	justify-content: space-between;
+
+}
+
+.my-argument {
+
+	display: inline-block;
+	width: 62%;
+	height: 45px;
+	margin: 2% 0;
+	padding: 0 10px;
+
+}
+
+#surrender {
+ 
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	width: 36%;
+	height: 45px;
+	background-color: #f44242;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	margin: 2% 0;
+
+}
+
+.leave {
+
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	width: 36%;
+	height: 45px;
+	background-color: #79fc84;
+	border: none;
+	outline: none;
+	margin: 2% 0;
+
+}
+
+#surrender:hover, .leave:hover {
+		
+	box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+
+}
+
+#surrender:active {
+		
+	box-shadow: 0 0 0 0.2rem rgba(255, 58, 50,.5);
+
+}
+
+#surrender:disabled {
+		
+	background-color: #bfbfbf;
+
+}
+
+.leave:active {
+		
+	box-shadow: 0 0 0 0.2rem rgba(53, 255, 70,.9);
+
+}
+
+.leave:focus {
+
+	border: none;
+	outline: none;
+
+}
+
+.bs-tooltip-top .arrow::before, .bs-tooltip-auto[x-placement^="top"] .arrow::before {
+
+    border-top-color: rgb(189, 193, 201, 0.9);
+
+}
+
+.tooltip-inner {
+
+    max-width: 250px;
+    color: #000;
+    background-color: rgb(189, 193, 201, 0.9);
+    border-radius: 0.25rem;
+
+}
+
+.btn-secondary {
+
+	background-color: #6eb3e5;
+	border: none;
+	outline: none;
+
+}
+
+.btn-primary {
+
+	background-color: #ef5953;
+	border: none;
+	outline: none;
+
+}
+
+.btn-secondary:hover {
+		
+	box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+	background-color: #6eb3e5;
+
+}
+
+.btn-primary:hover {
+		
+	box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+	background-color: #ef5953;
+
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active {
+		
+	background-color: #6eb3e5;
+
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+		
+	background-color: #ef5953;
+
+}
+
+.-final {
+
+	float: left;
+	min-width: 100%;
+	overflow-wrap: break-word;
+	background-color: #79fc84;
+
+}
+
+.report {
+
+	text-align: center;
+
+}
+
+#surrender:disabled{
+		
+	background-color: #bfbfbf;
+	cursor: default;
+
+}

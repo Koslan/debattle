@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<meta charset="UTF-8">
+<title>Debaters Chat</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+
+<link rel="stylesheet" type="text/css"
+	href="js/jquery.datetimepicker.css" />
+<script src="js/jquery.js"></script>
+<script src="js/jquery.datetimepicker.js"></script>
+
+<style type="text/css"></style>
+
+</head>
+<body>
+
+	<div style="height: 900px" th:fragment="debatersChat">
+
+		<div class="container main-field">
+
+			<div class="text-center">
+				<div>
+					<h3>До начала дебат осталось</h3>
+					<h3 th:id="toTimerOne" th:text="${toTimerOne}"></h3>
+				</div>
+				<div>
+					<h3>таймер</h3>
+					<h3 th:id="timeIsComplete" th:text="${timeIsComplete}"></h3>
+				</div>
+
+				<div class="container opponents">
+
+					<div class="opponent">
+
+						<div class="opponent-image ml-4">
+							<a class="ml-4" href="#"> <img
+								th:src="${'../images/users/' + firstSideUser.userImage}"
+								class="rounded-circle " alt="Opponent" width="60" height="60">
+							</a>
+						</div>
+<!-- 						<div class="opponent-image ml-4">
+							<a class="ml-4" href="#"> <img
+								th:src="${'~/resources/images/users/' + firstSideUser.userImage}"
+								class="rounded-circle " alt="Opponent" width="60" height="60">
+							</a>
+						</div> -->
+
+						<p class="member-name h5">
+							<span th:text="${firstSideUser.login}"> </span>
+						</p>
+						<p class="side h3">
+							<span th:text="${theme.firstPosition}">
+						</p>
+
+					</div>
+
+					<p class="h1">VS</p>
+
+					<div class="opponent">
+
+						<a href="#"> <img
+							th:src="${'../images/users/' + secondSideUser.userImage}"
+							class="rounded-circle " alt="Opponent" width="60" height="60">
+						</a>
+<!-- 						<a href="#"> <img
+							th:src="${'../resources/images/users/' + secondSideUser.userImage}"
+							class="rounded-circle " alt="Opponent" width="60" height="60">
+						</a> -->
+
+						<p class="member-name h5">
+							<span th:text="${secondSideUser.login}">
+						</p>
+						<p class="side h3">
+							<span th:text="${theme.secondPosition}">
+						</p>
+
+					</div>
+
+				</div>
+
+				<div class="table-of-votes">
+
+					<div id="firstPosition">0</div>
+					<div id="secondPosition">0</div>
+
+				</div>
+				<div>
+					<h6>Время на написание сообщения</h6>
+					<h6 th:id="toTimerTwo" style="color: red" th:text="${toTimerTwo}"></h6>
+					<!-- <script type="text/javascript">
+							setTimeout("window.location.reload()", 10000)
+						</script> -->
+					<!-- Обратный отсчет времени -->
+					<script>
+						// Set the date we're counting down to
+						var countDownDate2 = new Date(document
+								.getElementById("toTimerTwo").innerHTML).getTime();
+
+						// Update the count down every 1 second
+						var x = setInterval(
+								function() {
+					var сomplete = document.getElementById("timeIsComplete");
+									// Get todays date and time
+									var now2 = new Date().getTime();
+
+									// Find the distance between now an the count down date
+									var distance2 = countDownDate2 - now2;
+
+									// Time calculations for days, hours, minutes and seconds
+									var days2 = Math.floor(distance2
+											/ (1000 * 60 * 60 * 24));
+									var hours2 = Math
+											.floor((distance2 % (1000 * 60 * 60 * 24))
+													/ (1000 * 60 * 60));
+									var minutes2 = Math
+											.floor((distance2 % (1000 * 60 * 60))
+													/ (1000 * 60));
+									var seconds2 = Math
+											.floor((distance2 % (1000 * 60)) / 1000);
+
+									// Output the result in an element with id="demo"
+									document.getElementById("toTimerTwo").innerHTML = days2
+											+ "д "
+											+ hours2
+											+ "ч "
+											+ minutes2
+											+ "мин " + seconds2 + "с ";
+
+									// If the count down is over, write some text 
+									if (distance2 < 0) {
+										clearInterval(x);
+										document.getElementById("toTimerTwo").innerHTML = "Время на написание сообщение истекло";
+										сomplete = false;
+									}
+								}, 1000);
+					</script>
+					<!-- 					Обратный отсчет времени
+					<script>
+						// Set the date we're counting down to
+						var countDownDate1 = new Date("Jul 16, 2019 20:43:25")
+								.getTime();
+
+						// Update the count down every 1 second
+						var x = setInterval(
+								function() {
+
+									// Get todays date and time
+									var now = new Date().getTime();
+
+									// Find the distance between now an the count down date
+									var distance = countDownDate1 - now;
+
+									// Time calculations for days, hours, minutes and seconds
+									var days = Math.floor(distance
+											/ (1000 * 60 * 60 * 24));
+									var hours = Math
+											.floor((distance % (1000 * 60 * 60 * 24))
+													/ (1000 * 60 * 60));
+									var minutes = Math
+											.floor((distance % (1000 * 60 * 60))
+													/ (1000 * 60));
+									var seconds = Math
+											.floor((distance % (1000 * 60)) / 1000);
+
+									// Output the result in an element with id="demo"
+									document.getElementById("demo1").innerHTML = days
+											+ "д "
+											+ hours
+											+ "ч "
+											+ minutes
+											+ "мин " + seconds + "с ";
+
+									// If the count down is over, write some text 
+									if (distance < 0) {
+										clearInterval(x);
+										document.getElementById("demo1").innerHTML = "Дебаты начались";
+									}
+								}, 1000);
+					</script> -->
+				<!-- </div> -->
+
+				<!-- Обратный отсчет времени -->
+				<!-- Таймер отсчета до начала дебат -->
+				<script>
+					// Set the date we're counting down to
+					var countDownDate = new Date(document
+							.getElementById("toTimerOne").innerHTML).getTime();
+
+					// Update the count down every 1 second
+					var x = setInterval(
+							function() {
+
+								// Get todays date and time
+								var now = new Date().getTime();
+
+								// Find the distance between now an the count down date
+								var distance = countDownDate - now;
+
+								// Time calculations for days, hours, minutes and seconds
+								var days = Math.floor(distance
+										/ (1000 * 60 * 60 * 24));
+								var hours = Math
+										.floor((distance % (1000 * 60 * 60 * 24))
+												/ (1000 * 60 * 60));
+								var minutes = Math
+										.floor((distance % (1000 * 60 * 60))
+												/ (1000 * 60));
+								var seconds = Math
+										.floor((distance % (1000 * 60)) / 1000);
+
+								// Output the result in an element with id="demo"
+								document.getElementById("toTimerOne").innerHTML = days
+										+ "д " + hours
+										+ "ч " + minutes
+										+ "мин " + seconds + "с ";
+
+								// If the count down is over, write some text 
+								if (distance < 0) {
+									clearInterval(x);
+									document.getElementById("toTimerOne").innerHTML = "Дебаты начинаются";
+								}
+							}, 1000);
+				</script>
+
+			</div>
+			</div>
+
+			<div class="container chat-field for-members clearfix">
+
+				<div class="clearfix">
+
+					<div class="message of-debaters of-opponent rounded">
+						<p class="argument h6">Я считаю, что ты не прав, так как...</p>
+						<p class="create-date">13:07</p>
+					</div>
+
+				</div>
+
+				<div class="clearfix">
+
+					<div class="message of-debaters of-mine-as-member rounded">
+						<p class="argument h6">На самом деле...</p>
+						<p class="create-date">13:08</p>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="container argument-label">
+				<input type="text" id="member-message" class="my-argument"
+					placeholder="Напишите свой тезис...">
+				<button id="surrender" class="rounded h3" data-toggle="modal"
+					data-target="#exampleModal">Сдасться</button>
+			</div>
+
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Вы признаете
+								поражение?</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">Вы потеряете часть заработанных
+							очков Репутации, однако сможете скомпенсировать реальную цену
+							проигрыша.</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Я продолжаю дебаты</button>
+							<button type="submit" th:action="@{/debatersChat}"
+								th:object="${lobby}" id="confirm-surrender"
+								class="btn btn-primary" data-dismiss="modal">Я сдаюсь</button>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+</body>
+</html>

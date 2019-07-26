@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+</style>
+<meta charset="UTF-8">
+<title>Поиск аппонента</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+	crossorigin="anonymous"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+	crossorigin="anonymous"></script>
+
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+	crossorigin="anonymous"></script>
+<script src="/js/datatable.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+<script
+	src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="/js/datatable.js"></script>
+</head>
+
+<body th:fragment="content" onload="myFunction()" style="margin: 0;">
+	<div class="container" th:fragment="content">
+		<link rel="stylesheet" href="/css/timer.css">
+
+		<div style="height: 900px" th:fragment="content">
+
+			<!-- Круглая иконка загрузки -->
+			<div style="margin-top: 100px" id="loader"></div>
+
+			<div>
+				<div class="text-center">
+					<h4>По вашему запросу идет поиск оппонента для дебатов на тему</h4>
+
+					<div th:if="${theme.id == themesId}" class="text-center"
+						th:each="theme : ${themes}">
+						<h4 class="text-center" th:text="${theme.name}"></h4>
+					</div>
+
+					<div th:if="${theme.id == themesId}" class="card-body"
+						th:each="theme : ${themes}">
+						<div class="text-center">
+							<img width="200" height="200"
+								th:src="@{${'~/images/'+theme.backgroundImage}}" alt="Картинка"
+								class="img-thumbnail ml-3">
+						</div>
+						<!-- Раскомментировать и использовать для AWS -->
+						<!-- <div class="text-center">
+							<img width="200" height="200"
+								th:src="@{${'/resources/images/themes/'+theme.backgroundImage}}" alt="Картинка"
+								class="img-thumbnail ml-3">
+						</div>
+						<div class="text-center">
+							<img width="200" height="200"
+								th:src="@{${'~/resources/images/themes/'+theme.backgroundImage}}" alt="Картинка"
+								class="img-thumbnail ml-3">
+						</div>
+						<div class="text-center">
+							<img width="200" height="200"
+								th:src="@{${'resources/images/themes/'+theme.backgroundImage}}" alt="Картинка"
+								class="img-thumbnail ml-3">
+						</div>
+						<div class="text-center">
+							<img width="200" height="200"
+								th:src="@{${'../resources/images/'+theme.backgroundImage}}" alt="Картинка"
+								class="img-thumbnail ml-3">
+						</div>
+						<div class="text-center">
+							<img width="200" height="200"
+								th:src="@{${'..resources/images/'+theme.backgroundImage}}" alt="Картинка"
+								class="img-thumbnail ml-3">
+						</div> -->
+					</div>
+
+					<!-- Круглая иконка загрузки -->
+					<div style="display: none;" id="myDiv" class="animate-bottom">
+						<h4>Внимание!</h4>
+
+						<h6 class="text-center" th:each="oponent : ${loginOponent}">
+							Найден оппонент- <span class="text-center"
+								th:text="${oponent.login}"></span>
+						</h6>
+
+						<h6 th:if="${themes.firstPosition != position}"
+							class="text-center">
+							Позиция оппонента - <span class="text-center"
+								th:text="${themes.firstPosition}"></span>
+						</h6>
+
+						<h6 th:if="${themes.secondPosition != position}"
+							class="text-center">
+							Позиция оппонента - <span class="text-center"
+								th:text="${themes.secondPosition}"></span>
+						</h6>
+
+						<h6 class="text-center">
+							Ваша позиция - <span class="text-center" th:text="${position}"></span>
+						</h6>
+						<br>
+
+						<h4>Основные конфигурации</h4>
+
+						<h6 class="text-center">
+							Название дебатов - <span class="text-center"
+								th:text="${lobby.name}"></span>
+						</h6>
+
+						<h6 class="text-center">
+							Общее время дебатов (минут) - <span class="text-center"
+								th:text="${configuration.generalTime}"></span>
+						</h6>
+
+						<h6 class="text-center">
+							Время на написание сообщение (минут) - <span class="text-center"
+								th:text="${configuration.timeoutTime}"></span>
+						</h6>
+
+						<h6 class="text-center">
+							Штраф за несвоеременное предоставление аргумента - <span class="text-center"
+								th:text="${configuration.timeoutFine}"></span>
+						</h6>
+
+						<h6 class="text-center">
+							Видимость зрительского чата - <span
+								th:if="${configuration.isSpectatorChatVisible}"
+								class="text-center"> включена</span> <span
+								th:if="${!configuration.isSpectatorChatVisible}"
+								class="text-center"> выключена</span>
+						</h6>
+
+						<h6 class="text-center">
+							Цензура - <span th:if="${configuration.isCensorship}"
+								class="text-center"> включена</span> <span
+								th:if="${!configuration.isCensorship}" class="text-center">
+								выключена</span>
+						</h6>
+
+						<!-- Добавить позже -->
+						<h6 class="text-center">
+							Количество баллов за победу - 120 (добавить) <span
+								class="text-center"
+								th:text="${configuration.isSpectatorChatVisible}"></span>
+						</h6>
+
+						<br>
+						<!-- <button type="button" class="btn btn-success">Начать
+							дебаты</button> -->
+						<a class="nav-link btn btn-info mt-3 mr-3"
+							th:href="@{'/debateLobby/'+${lobby.id}}">Создать Дебаты</a>
+
+					</div>
+
+					<script>
+						var myVar;
+
+						function myFunction() {
+							myVar = setTimeout(showPage, 3000);
+						}
+
+						function showPage() {
+							document.getElementById("loader").style.display = "none";
+							document.getElementById("myDiv").style.display = "block";
+						}
+					</script>
+
+					<script type="text/javascript">
+						$('.selectpicker').selectpicker();
+					</script>
+				</div>
+</body>
+</html>

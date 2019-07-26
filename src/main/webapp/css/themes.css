@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+.card-columns {
+	
+	padding-right: 20px;
+	
+}
+
+.card {
+
+		padding: 5px;
+		background-color: #ccecff;
+		margin: 10px;
+
+}
+
+img {
+	
+	margin-right: 10px;
+	margin-bottom: 10px;
+	
+}
+
+.name {
+	
+	text-align: center;
+	color: #2d87bc;
+	
+}
+
+.positions {
+	
+	display: flex;
+    justify-content: space-around;
+	
+}
+
+.positions p {
+	
+	margin: 0 15px;
+	
+}
+
+a {
+	
+	text-align: center;
+	color: #0fa3ba;
+	
+}
+div.config {
+	
+	text-align: center;
+	color: #0fa3ba;
+	
+}
+a.h3 name card-title{
+	text-align: center;
+	color: #0fa3ba;
+}

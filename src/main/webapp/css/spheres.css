@@ -1,0 +1,74 @@
+@charset "UTF-8";
+{
+	display: inline-block;
+	column-break-inside: avoid;
+}
+
+.container {
+
+	background-color: #ccecff;
+
+}
+
+li {
+
+	margin-top: 10px;
+
+}
+ul {
+    padding-top: 2px;
+    margin: 10px; /* Убираем отступы у списка */
+   }
+
+
+.h5 a, .h5 li {
+
+	font-size: 15px;
+	color: #000;
+		
+}
+
+.h6 a, .h6 a {
+
+	font-size: 15px;
+	color:#2D87BC;
+			
+}
+
+.container {
+  max-width: 60em;
+  @include make-container();
+}
+.row {
+  @include make-row();
+}
+.content-main {
+  @include make-col();
+ 
+  @media (max-width: 32em) {
+    @include make-col-span(6);
+  }
+  @media (min-width: 32.1em) {
+    @include make-col-span(8);
+  }
+}
+.content-secondary {
+  @include make-col();
+ 
+  @media (max-width: 32em) {
+    @include make-col-span(6);
+  }
+  @media (min-width: 32.1em) {
+    @include make-col-span(4);
+  }
+}
+
+.card-columns {
+  @include media-breakpoint-only(lg) {
+    column-count: 4;
+  }
+  
+  @include media-breakpoint-only(xl) {
+    column-count: 5;
+  }
+}
